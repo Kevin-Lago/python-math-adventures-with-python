@@ -1,6 +1,5 @@
 from turtle import *
 from time import sleep
-import math
 
 
 def square(size: int = 100):
