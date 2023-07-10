@@ -2,9 +2,7 @@
 
 Python's turtle module's "turtle" agent is based on the [Logo programming language](https://en.wikipedia.org/wiki/Logo_(programming_language)), which was invented in the 1960's to make computer programming more accessible to everyone.
 
-Python's turtle module lets you control a small image shaped like a turtle, just like a video game character.
-
-## In the chapter
+## In This Chapter
 
 - Python
   - [Function](https://docs.python.org/3/glossary.html#term-function)
