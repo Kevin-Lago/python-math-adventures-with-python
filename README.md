@@ -9,3 +9,4 @@ Notes and projects from the book, "Math Adventures With Python".
 3. [Guessing and Checking with Conditionals](https://github.com/Kevin-Lago/python-math-adventures-with-python/tree/main/3_guessing_and_checking_with_conditionals)
 4. [Transforming and Storing Numbers with Algebra](https://github.com/Kevin-Lago/python-math-adventures-with-python/tree/main/4_transforming_and_storing_numbers_with_algebra)
 5. [Transforming Shapes with Geometry](https://github.com/Kevin-Lago/python-math-adventures-with-python/tree/main/5_transforming_shapes_with_geometry)
+6. [Creating Oscillations with Trigonometry](https://github.com/Kevin-Lago/python-math-adventures-with-python/tree/main/6_creating_oscillations_with_trigonometry)
