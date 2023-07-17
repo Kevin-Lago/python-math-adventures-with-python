@@ -16,11 +16,9 @@ def setup():
     
     xscl = width/float(rangex)
     yscl = height/float(rangey)
-    println("stop")
     
     
 def draw():
-    println("stop")
     translate(width/2, height/2)
     x = xmin
     while x < xmax:
