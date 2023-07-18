@@ -7,11 +7,8 @@ ymax = 10
 rangex = xmax - xmin
 rangey = ymax - ymin
 
-fmatrix = [[0,0], [1,0], [1,2], [2,2], [2,3], [1,3], [1,4], [3,4], [3,5], [0,5], [0,0]]
-rotation_matrix = [[0,-1], [1,0]]
-reflection_matrix = [[1,0], [0,-1]]
-# tm2 = [[0,-1], [-1,0]]
-# tm2 = [[-1,1], [1,1]]
+fmatrix = [[0,0,0], [1,0,0], [1,2,0], [2,2,0], [2,3,0], [1,3,0], [1,4,0], [3,4,0], [3,5,0], [0,5,0], [0,0,1], [1,0,1], [1,2,1], [2,2,1], [2,3,1], [1,3,1], [1,4,1], [3,4,1], [3,5,1], [0,5,1]]
+edges = [[0,1], [1,2], [2,3], [3,4], [4,5], [5,6], [6,7], [7,8], [8,9], [9,0], [10,11], [11,12], [12,13], [13,14], [14,15], [15,16], [16,17], [17,18], [18,19], [19,10], [0,10], [1,11], [2,12], [3,13], [4,14], [5,15], [6,16], [7,17], [8,18], [9, 19]]
 
 
 def setup():
@@ -25,20 +22,28 @@ def setup():
 
 def draw():
     global xscl, yscl
-    background(255)
+    background(0)
     translate(width/2, height/2)
-    grid(xscl, yscl)
     
-    ang = map(mouseX,0,width,0,TWO_PI)
-    rotation_matrix = [[cos(ang), -sin(ang)], [sin(ang), cos(ang)]]
-    
+    rot = map(mouseX,0,width,0,TWO_PI)
+    tilt = map(mouseY,0,height,0,TWO_PI)
     strokeWeight(2)
     stroke(0)
-    graph_points(fmatrix)
 
-    transformed_matrix = transpose(multiply_matrices(rotation_matrix, transpose(fmatrix)))
+    transformed_matrix = transpose(multiply_matrices(rottilt(rot, tilt), transpose(fmatrix)))
     stroke(255, 0, 0)
-    graph_points(transformed_matrix)
+    graph_points(transformed_matrix, edges)
+    
+    
+def rottilt(rot, tilt):
+    rotation_matrix_y = [[cos(rot), 0.0, sin(rot)],
+                         [0.0, 1.0, 0.0],
+                         [-sin(rot), 0.0, cos(rot)]]
+    rotation_matrix_x = [[1.0, 0.0, 0.0],
+                         [0.0, cos(tilt), sin(tilt)],
+                         [0.0, -sin(tilt), cos(tilt)]]
+    
+    return multiply_matrices(rotation_matrix_y, rotation_matrix_x)
     
     
 def transpose(a):
@@ -70,22 +75,7 @@ def multiply_matrices(a, b):
     return new_matrix
     
     
-def graph_points(matrix):
-    beginShape()
-    for pt in matrix:
-        vertex(pt[0]*xscl, pt[1]*yscl)
-    endShape()
-
-    
-def grid(xscl, yscl):
-    strokeWeight(1)
-    stroke(0, 255, 255)
-    
-    for i in range(xmin, xmax+1):
-        line(i*xscl, ymin*yscl, i*xscl, ymax*yscl)
-    for i in range(ymin, ymax+1):
-        line(xmin*xscl, i*yscl, xmax*xscl, i*yscl)
-        
-    stroke(0)
-    line(0,ymin*yscl,0,ymax*yscl)
-    line(xmin*xscl,0,xmax*xscl,0)
+def graph_points(points, edges):
+    for e in edges:
+        line(points[e[0]][0]*xscl, points[e[0]][1]*yscl,
+             points[e[1]][0]*xscl, points[e[1]][1]*yscl)
