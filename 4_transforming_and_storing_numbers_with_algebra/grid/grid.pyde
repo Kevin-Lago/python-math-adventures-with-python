@@ -12,8 +12,8 @@ def setup():
     global xscl, yscl
     size(600, 600)
     
-    xscl = width / rangex
-    yscl = height / rangey
+    xscl = width/rangex
+    yscl = -height/rangey
     
 
 def draw():
